@@ -9,14 +9,29 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot }) {
+function BotCard({ bot, onBotSelect, onDelete ,isYourArmy}) {
+  const handleDelete = () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this bot?");
+    if (confirmDelete) {
+      onDelete(bot.id);
+    }
+  };
+
+  function deleteButton(){
+    return(
+      <span className="ui right floated left aligned segment basic">
+        <button className="ui mini red button" onClick={handleDelete}>
+          x
+        </button>
+      </span>
+    )
+  }
+
   return (
     <div className="ui column">
-      <div
-        className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
-      >
+      <div className="ui card"
+         key={bot.id}
+         onClick={() => onBotSelect(bot)}>
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
@@ -34,7 +49,6 @@ function BotCard({ bot }) {
             <i className="icon heartbeat" />
             {bot.health}
           </span>
-
           <span>
             <i className="icon lightning" />
             {bot.damage}
@@ -43,18 +57,7 @@ function BotCard({ bot }) {
             <i className="icon shield" />
             {bot.armor}
           </span>
-          <span>
-            <div className="ui center aligned segment basic">
-              <button
-                className="ui mini red button"
-                onClick={() =>
-                  console.log("add code to connect event listener")
-                }
-              >
-                x
-              </button>
-            </div>
-          </span>
+          {isYourArmy? deleteButton():null}
         </div>
       </div>
     </div>
