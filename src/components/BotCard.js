@@ -9,7 +9,7 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, onBotSelect, onDelete ,isYourArmy}) {
+function BotCard({ bot, onShowDetails, onDelete,isYourArmy}) {
   const handleDelete = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this bot?");
     if (confirmDelete) {
@@ -31,7 +31,7 @@ function BotCard({ bot, onBotSelect, onDelete ,isYourArmy}) {
     <div className="ui column">
       <div className="ui card"
          key={bot.id}
-         onClick={() => onBotSelect(bot)}>
+         onClick={() => onShowDetails(bot)}>
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
