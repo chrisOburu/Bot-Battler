@@ -22,3 +22,13 @@ body {
 .ui.grid {
   padding: 0px 20px;
 }
+
+
+.filter{
+    list-style:none;
+    display: flex;
+    /*flex-wrap: nowrap;*/
+    flex-direction: row;
+    justify-content: space-around;
+}
+    
